@@ -15,26 +15,27 @@ export async function getArticles() {
 // Get one article by ID
 export async function getArticleById(id) {
     // TODO
-    const article = await pool.query(`SELECT * FROM articles WHERE id = ?`,[id])
-    return article || null;
+    const [rows] = await pool.query(`SELECT * FROM articles WHERE id = ?`, [id]);
+    return rows[0] || null;
 }
 
 // Create a new article
 export async function createArticle(article) {
     // TODO
-    await pool.query(`INSERT INTO articles SET ?`,article)
+    const [result] = await pool.query(`INSERT INTO articles SET ?`, article);
+    return await getArticleById(result.insertId);
 }
 
 // Update an article by ID
 export async function updateArticle(id, updatedData) {
     // TODO
-    await pool.query(`UPDATE articles SET ? WHERE id = ? `, [updatedData,id])
-
+    const [result] = await pool.query(`UPDATE articles SET ? WHERE id = ? `, [updatedData, id]);
+    return result.affectedRows === 0 ? null : await getArticleById(id);
 }
 
 // Delete an article by ID
 export async function deleteArticle(id) {
     // TODO
-    await pool.query(`DELETE articles SET WHERE id = ? `, [id])
+    await pool.query(`DELETE FROM articles WHERE id = ? `, [id])
 
 }
