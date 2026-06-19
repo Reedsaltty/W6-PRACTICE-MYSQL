@@ -1,7 +1,9 @@
 import express, { json } from "express";
 import cors from "cors";
 import articleRouter from "./routes/articleRoutes.js";
-
+import dotenv from "dotenv";
+ 
+dotenv.config();
 const app = express();
 
 
@@ -13,7 +15,7 @@ app.use(json());
 
 app.use("/api/articles", articleRouter);
 
-const PORT = 4000;
+const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

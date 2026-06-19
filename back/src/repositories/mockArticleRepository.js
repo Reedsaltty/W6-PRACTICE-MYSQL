@@ -1,19 +1,4 @@
-let articles = [
-  {
-    id: "1",
-    title: "React Basics",
-    content: "Learn React",
-    journalist: "Alice",
-    category: "Frontend",
-  },
-  {
-    id: "2",
-    title: "Routing",
-    content: "React Router",
-    journalist: "Bob",
-    category: "Frontend",
-  },
-];
+
 
 // Helper to simulate async delay (optional)
 function delay(ms = 100) {
